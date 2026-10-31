@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as MenuRouteImport } from './routes/menu'
+import { Route as PedidoRouteImport } from './routes/pedido'
 import { Route as PromocionesRouteImport } from './routes/promociones'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const MenuRoute = MenuRouteImport.update({
   path: '/menu',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PedidoRoute = PedidoRouteImport.update({
+  id: '/pedido',
+  path: '/pedido',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PromocionesRoute = PromocionesRouteImport.update({
   id: '/promociones',
   path: '/promociones',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contacto': typeof ContactoRoute
   '/menu': typeof MenuRoute
+  '/pedido': typeof PedidoRoute
   '/promociones': typeof PromocionesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contacto': typeof ContactoRoute
   '/menu': typeof MenuRoute
+  '/pedido': typeof PedidoRoute
   '/promociones': typeof PromocionesRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/contacto': typeof ContactoRoute
   '/menu': typeof MenuRoute
+  '/pedido': typeof PedidoRoute
   '/promociones': typeof PromocionesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contacto' | '/menu' | '/promociones'
+  fullPaths: '/' | '/contacto' | '/menu' | '/pedido' | '/promociones'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contacto' | '/menu' | '/promociones'
-  id: '__root__' | '/' | '/contacto' | '/menu' | '/promociones'
+  to: '/' | '/contacto' | '/menu' | '/pedido' | '/promociones'
+  id: '__root__' | '/' | '/contacto' | '/menu' | '/pedido' | '/promociones'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactoRoute: typeof ContactoRoute
   MenuRoute: typeof MenuRoute
+  PedidoRoute: typeof PedidoRoute
   PromocionesRoute: typeof PromocionesRoute
 }
 
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MenuRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pedido': {
+      id: '/pedido'
+      path: '/pedido'
+      fullPath: '/pedido'
+      preLoaderRoute: typeof PedidoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/promociones': {
       id: '/promociones'
       path: '/promociones'
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactoRoute: ContactoRoute,
   MenuRoute: MenuRoute,
+  PedidoRoute: PedidoRoute,
   PromocionesRoute: PromocionesRoute,
 }
 export const routeTree = rootRouteImport
