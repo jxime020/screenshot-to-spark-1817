@@ -8,3 +8,4 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+- All business data (products, zones, hours, WhatsApp, payments) lives in src/lib/config.ts; pricing math in src/lib/order.ts with tests — keeps edits in one place.
