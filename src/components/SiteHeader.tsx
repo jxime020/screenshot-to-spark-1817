@@ -38,6 +38,7 @@ export function SiteHeader() {
       return () => clearTimeout(t);
     }
     prev.current = count;
+    return undefined;
   }, [count]);
 
   return (

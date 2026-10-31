@@ -52,7 +52,7 @@ function Checkout() {
   useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, [step]);
 
   const zone = DELIVERY_ZONES.find((z) => z.id === zoneId) ?? null;
-  const t = computeTotals(cart.lines, { mode, zoneCost: zone?.cost ?? null, discountPct: promo.applied ? PROMO_CODES[promo.applied] : 0 });
+  const t = computeTotals(cart.lines, { mode, zoneCost: zone?.cost ?? null, discountPct: promo.applied ? (PROMO_CODES[promo.applied] ?? 0) : 0 });
   const set = (k: keyof Form) => (e: { target: { value: string } }) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   function validateDelivery() {
@@ -337,7 +337,7 @@ function Radio({ on }: { on: boolean }) {
   return <span className={`grid h-5 w-5 shrink-0 place-items-center rounded-full border-2 ${on ? "border-primary" : "border-muted-foreground"}`}>{on && <span className="h-2.5 w-2.5 rounded-full bg-primary" />}</span>;
 }
 
-function Field({ label, error, className = "", ...props }: { label: string; error?: string; className?: string } & React.InputHTMLAttributes<HTMLInputElement>) {
+function Field({ label, error, className = "", ...props }: { label: string; error?: string | undefined; className?: string } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <label className={`block ${className}`}>
       <span className={`card-surface block px-3 py-2 focus-within:border-primary ${error ? "border-primary" : ""}`}>
