@@ -3,16 +3,12 @@ import { ShoppingCart } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { BUSINESS } from "@/lib/config";
-import logoAsset from "@/assets/symbol.svg.asset.json";
+import logoAsset from "@/assets/logo.svg.asset.json";
 
 export function Brand() {
   return (
-    <Link to="/" className="flex min-w-0 items-center gap-2">
-      <img src={logoAsset.url} alt={`Logotipo de ${BUSINESS.name}`} className="h-10 w-10 shrink-0" />
-      <span className="min-w-0 leading-none">
-        <span className="block truncate font-display text-xl font-bold tracking-wide">{BUSINESS.name}</span>
-        <span className="block truncate text-[10px] uppercase tracking-widest text-muted-foreground">{BUSINESS.tagline}</span>
-      </span>
+    <Link to="/" className="flex min-w-0 items-center gap-2" aria-label={BUSINESS.name}>
+      <img src={logoAsset.url} alt={`Logotipo de ${BUSINESS.name}`} className="h-14 w-auto shrink-0" />
     </Link>
   );
 }
