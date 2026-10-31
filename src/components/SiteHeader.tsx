@@ -8,7 +8,7 @@ import logoAsset from "@/assets/logo.svg.asset.json";
 export function Brand() {
   return (
     <Link to="/" className="flex min-w-0 items-center gap-2" aria-label={BUSINESS.name}>
-      <img src={logoAsset.url} alt={`Logotipo de ${BUSINESS.name}`} className="h-10 w-auto shrink-0" />
+      <img src={logoAsset.url} alt={`Logotipo de ${BUSINESS.name}`} className="h-14 w-auto shrink-0" />
     </Link>
   );
 }
