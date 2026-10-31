@@ -33,7 +33,7 @@ function Checkout() {
   const [form, setForm] = useState<Form>(emptyForm);
   const [payment, setPayment] = useState<PaymentMethodId | null>(null);
   const [promo, setPromo] = useState({ open: false, input: "", applied: "", error: "" });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<"name"|"phone"|"address"|"colonia"|"cp"|"zone"|"payment"|"geo", string>>>({});
   const [locating, setLocating] = useState(false);
   const [sent, setSent] = useState(false);
   const [confirming, setConfirming] = useState(false);
@@ -56,7 +56,7 @@ function Checkout() {
   const set = (k: keyof Form) => (e: { target: { value: string } }) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   function validateDelivery() {
-    const e: Record<string, string> = {};
+    const e: typeof errors = {};
     if (form.name.trim().length < 3) e.name = "Escribe tu nombre completo.";
     if (!isValidPhone(form.phone)) e.phone = "Escribe un teléfono de 10 dígitos.";
     if (mode === "domicilio") {
@@ -304,7 +304,7 @@ function Checkout() {
         {step === 0 ? (
           cart.lines.length > 0 && <Link to="/menu" className="inline-flex items-center gap-2 py-2"><ChevronLeft className="h-4 w-4" /> Seguir comprando</Link>
         ) : (
-          <button onClick={() => { setErrors({}); setConfirming(false); setStep((s) => s - 1); }} className="inline-flex items-center gap-2 py-2"><ChevronLeft className="h-4 w-4" /> Volver a {STEPS[step - 1].toLowerCase()}</button>
+          <button onClick={() => { setErrors({}); setConfirming(false); setStep((s) => s - 1); }} className="inline-flex items-center gap-2 py-2"><ChevronLeft className="h-4 w-4" /> Volver a {(STEPS[step - 1] ?? "").toLowerCase()}</button>
         )}
       </div>
     </Shell>
