@@ -1,16 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { ShoppingCart, Waves } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { BUSINESS } from "@/lib/config";
+import logoAsset from "@/assets/symbol.svg.asset.json";
 
 export function Brand() {
-  // Marcador temporal: sustituir por el logotipo original de FRESCA MAREA cuando se proporcione.
   return (
     <Link to="/" className="flex min-w-0 items-center gap-2">
-      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground">
-        <Waves className="h-5 w-5" />
-      </span>
+      <img src={logoAsset.url} alt={`Logotipo de ${BUSINESS.name}`} className="h-10 w-10 shrink-0" />
       <span className="min-w-0 leading-none">
         <span className="block truncate font-display text-xl font-bold tracking-wide">{BUSINESS.name}</span>
         <span className="block truncate text-[10px] uppercase tracking-widest text-muted-foreground">{BUSINESS.tagline}</span>
